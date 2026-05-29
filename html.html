@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Temperatura</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Estadístiques del Sensor de Temperatura</h1>
+    <p>Última lectura: <span id="data-hora">-</span></p>
+    <h2>Actual: <span id="temp-actual">-</span>°C</h2>
+   
+    <div style="width: 80%; margin: auto;">
+        <canvas id="graficTemperatura"></canvas>
+    </div>
+
+    <script>
+        async function carregarDades() {
+            // Llegir JSON actualitzat per la Raspberry
+            const response = await fetch('data.json');
+            const data = await response.json();
+           
+            document.getElementById('data-hora').innerText = data.ultima_actualitzacio;
+            document.getElementById('temp-actual').innerText = data.temperatura;
+           
+            // Aquí enllaçaríeu la lògica per processar el CSV i agrupar per franges diàries/mensuals
+            inicialitzarGrafic([data.temperatura]);
+        }
+
+        function inicialitzarGrafic(dades) {
+            const ctx = document.getElementById('graficTemperatura').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Ara'],
+                    datasets: [{ label: 'Temp (°C)', data: dades, borderColor: 'blue' }]
+                }
+            });
+        }
+
+        carregarDades();
+        setInterval(carregarDades, 30000); // Es refresca cada 30s
+    </script>
+</body>
+</html>
