@@ -35,7 +35,7 @@ const errorDiv = document.getElementById("error");
 tbody.innerHTML = ""; 
 errorDiv.textContent = ""; 
 try { 
-const res = await fetch(URL_JSON + "?t=" + Date.now()); // evitar caché if (!res.ok) { 
+const URL_JSON = "dades/lectures.json"; // evitar caché if (!res.ok) { 
 throw new Error("Error HTTP " + res.status); 
 } 
 const datos = await res.json(); 
