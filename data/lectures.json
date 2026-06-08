@@ -134,5 +134,9 @@
   {
     "timestamp": "2026-06-08 12:43:41",
     "temperature_c": 27.25
+  },
+  {
+    "timestamp": "2026-06-08 12:44:23",
+    "temperature_c": 27.25
   }
 ]
