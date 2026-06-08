@@ -62,5 +62,9 @@
   {
     "timestamp": "2026-06-08 12:34:10",
     "temperature_c": 27.625
+  },
+  {
+    "timestamp": "2026-06-08 12:34:43",
+    "temperature_c": 27.562
   }
 ]
